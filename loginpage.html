@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minji Store Login</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <main class="loginpage">
+        <section class="login">
+            <div class="welcome">
+                <img src="assets/Welcome.svg" alt="welcome">
+            </div>
+            <p>Log in to your account to continue</p>
+        </section>
+
+        <form id="loginform" class="logincard">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" autocomplete="username" required>
+
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" autocomplete="current-password" required>
+
+            <button id="loginBtn" type="submit">Log In</button>
+
+            <div id="loginLoading" class="status loading" hidden>Checking account...</div>
+            <div id="loginError" class="status error" hidden></div>
+        </form>
+    </main>
+</body>
+</html>

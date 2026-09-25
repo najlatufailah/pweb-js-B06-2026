@@ -1,0 +1,133 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ff0b70;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #3b2d28 0,
+      #3b2d28 52px,
+      #463630 52px,
+      #463630 104px
+    );
+}
+
+.loginpage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 90px 24px 50px;
+}
+
+.login {
+  text-align: center;
+  margin-bottom: 52px;
+}
+
+.login .welcome {
+    width: auto;
+    max-width: 100%;
+    margin: 0 auto 25px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.login p {
+  margin-top: 10px;
+  font-size: 30px;
+  color: #F11370;
+}
+
+.logincard {
+  width: auto;
+  padding: 48px 70px 58px;
+  border-radius: 30px;
+  background: #FFF9B7;
+}
+
+.logincard label {
+  display: block;
+  margin: 0 0 12px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.logincard input {
+  width: 100%;
+  height: 68px;
+  margin-bottom: 28px;
+  padding: 0 20px;
+  border: 2px solid #DD85AA;
+  border-radius: 16px;
+  outline: none;
+  background: #FFB7D5;
+  font-size: 22px;
+  color: #4b2929;
+}
+
+.logincard button[type="submit"] {
+  width: 100%;
+  height: 70px;
+  border: 0;
+  border-radius: 16px;
+  background: #F11370;
+  color: #FFB7D5;
+  font-size: 30px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.logincard button[type="submit"]:hover {
+  filter: brightness(.94);
+}
+
+.logincard button:disabled {
+  opacity: .65;
+  cursor: wait;
+}
+
+.status {
+  margin-top: 18px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.status.loading {
+  color: #8a1450;
+  background: #ffd8e8;
+}
+
+.status.error {
+  color: #a51d35;
+  background: #ffd2d8;
+}
+
+@media (max-width: 650px) {
+  .login-page {
+    padding-top: 55px;
+  }
+
+  .login-hero {
+    margin-bottom: 35px;
+  }
+
+  .login-card {
+    padding: 32px 25px 38px;
+  }
+
+  .login-card label {
+    font-size: 20px;
+  }
+
+  .login-card input {
+    height: 58px;
+  }
+}
