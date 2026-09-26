@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minji Store - Mini Shopee</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="javascript/catalog.js" defer></script>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <div class="logo">Minji Store</div>
+        <div class="nav-right">
+            <button id="cartBtn" class="cart-btn">
+                 Keranjang <span id="cartBadge" class="badge">0</span>
+            </button>
+            <button id="logoutBtn" class="logout-btn">Log Out</button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="catalog-container">
+        <!-- Controls Bar (Filter, Sort, Search, Product Counter) -->
+        <section class="controls-bar">
+            <div class="filters">
+                <select id="categorySelect" class="control-select">
+                    <option value="all">All Category</option>
+                </select>
+
+                <select id="sortSelect" class="control-select">
+                    <option value="default">Sorting</option>
+                    <option value="price-asc">Harga: Termurah</option>
+                    <option value="price-desc">Harga: Termahal</option>
+                    <option value="rating-desc">Rating: Tertinggi</option>
+                </select>
+
+                <input type="text" id="searchInput" placeholder="Cari produk..." class="control-input">
+            </div>
+
+            <div class="product-count">
+                <span id="productCounter">0 from 0 Product</span>
+            </div>
+        </section>
+
+        <!-- Status Loading / Error -->
+        <div id="catalogLoading" class="status loading" style="display: none;">Memuat produk...</div>
+        <div id="catalogError" class="status error" style="display: none;"></div>
+
+        <!-- Product Grid -->
+        <section id="productGrid" class="product-grid">
+            <!-- Kartu produk di-render dinamis via JS -->
+        </section>
+    </main>
+
+    <!-- Modal Detail Produk (Ditampilkan HANYA saat produk diklik) -->
+    <div id="productModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <button id="closeModalBtn" class="close-btn" type="button">&times;</button>
+            <div id="modalBody" class="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Modal Keranjang Belanja (Ditampilkan HANYA saat tombol keranjang diklik) -->
+    <div id="cartModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content cart-modal-content">
+            <button id="closeCartBtn" class="close-btn" type="button">&times;</button>
+            <h2 class="cart-title">Keranjang Belanja</h2>
+            <div id="cartItemsList" class="cart-items-list">
+                <!-- Daftar item keranjang -->
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">Total: <span id="cartTotalAmount">Rp0</span></div>
+                <button id="checkoutBtn" class="add-cart-btn">Checkout</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
