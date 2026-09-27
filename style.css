@@ -207,19 +207,17 @@ body {
   font-size: 12px;
   margin-left: auto;
 }
-.product-grid { /* Titik (.) sudah ditambahkan */
+.product-grid { 
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Mengetengahkan kartu di layar */
+  justify-content: center; 
   gap: 20px;
   padding: 40px 20px;
-  max-width: 1100px; /* Pembatas lebar area kumpul kartu */
-  margin: 0 auto; /* Memastikan posisi area di tengah */
+  max-width: 1100px; 
+  margin: 0 auto; 
 }
-
-/* --- KARTU PRODUK --- */
 .product-card {
-  width: 175px; /* Mengunci lebar kartu agar tetap langsing */
+  width: 175px; 
   background-color: #f8bbd0;
   border-radius: 20px;
   padding: 12px;
@@ -258,12 +256,11 @@ body {
   -webkit-box-orient: vertical;
 }
 
-/* Mengatur Posisi Harga dan Rating Sejajar Kebawah/Samping */
 .product-card .price-rating {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Menyeimbangkan harga di kiri dan rating di kanan */
+  justify-content: space-between; 
   padding: 0 4px;
   margin-bottom: 6px;
   font-size: 10px;
@@ -383,7 +380,6 @@ body {
   line-height: 1.25;
 }
 
-/* Tag Brand & Stok */
 .modal-tags {
   display: flex;
   gap: 10px;
@@ -429,6 +425,15 @@ body {
   margin-bottom: 20px;
 }
 
+.modal-right .add-cart-btn.modal-cart-btn {
+  margin-top: auto;
+  background-color: #f11370;
+  color: #ffffff;
+  padding: 10px 0;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 11px;
+}
 
 .modal-cart-btn {
   margin-top: auto;
