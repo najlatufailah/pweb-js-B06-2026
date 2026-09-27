@@ -437,8 +437,8 @@ body {
 
 .modal-cart-btn {
   margin-top: auto;
-  background-color: #f11370 !important;
-  color: #ffffff !important;
+  background-color: #f11370;
+  color: #ffffff;
   padding: 10px 0;
   border-radius: 20px;
   font-weight: 700;
