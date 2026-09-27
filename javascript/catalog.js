@@ -1,11 +1,10 @@
-// Endpoint API Resmi Modul 2
+
 const PRODUCTS_API = "https://dummyjson.com/products?limit=100";
 
-// State Global
+
 let allProducts = [];
 let filteredProducts = [];
 
-// Elemen DOM Katalog
 const productGrid = document.getElementById("productGrid");
 const categorySelect = document.getElementById("categorySelect");
 const sortSelect = document.getElementById("sortSelect");
@@ -14,25 +13,19 @@ const productCounter = document.getElementById("productCounter");
 const catalogLoading = document.getElementById("catalogLoading");
 const catalogError = document.getElementById("catalogError");
 
-// Elemen DOM Modal Detail Produk
 const productModal = document.getElementById("productModal");
 const closeModalBtn = document.getElementById("closeModalBtn");
 const modalBody = document.getElementById("modalBody");
 
-// Elemen DOM Modal Keranjang Belanja
 const cartModal = document.getElementById("cartModal");
 const closeCartBtn = document.getElementById("closeCartBtn");
 const cartBtn = document.getElementById("cartBtn");
 
-// Inisialisasi saat DOM siap
 document.addEventListener("DOMContentLoaded", () => {
     fetchProducts();
     setupEventListeners();
 });
 
-/**
- * 1. MENGAMBIL DATA DARI DUMMYJSON API (FETCH)
- */
 async function fetchProducts() {
     if (catalogLoading) catalogLoading.style.display = "block";
     if (catalogError) catalogError.style.display = "none";
@@ -60,9 +53,6 @@ async function fetchProducts() {
     }
 }
 
-/**
- * 2. MENAMPILKAN OPTION KATEGORI SECARA DINAMIS
- */
 function populateCategoryOptions(products) {
     if (!categorySelect) return;
 
@@ -79,9 +69,6 @@ function populateCategoryOptions(products) {
     });
 }
 
-/**
- * 3. TEKNIK DEBOUNCE DENGAN CLOSURE (SEARCH)
- */
 function debounce(fn, delay = 300) {
     let timerId;
     return function (...args) {
@@ -92,9 +79,6 @@ function debounce(fn, delay = 300) {
     };
 }
 
-/**
- * 4. FILTERING & SORTING (SEARCH, FILTER, SORTING)
- */
 function applyFiltersAndRender() {
     const query = searchInput ? searchInput.value.toLowerCase().trim() : "";
     const selectedCategory = categorySelect ? categorySelect.value : "all";
@@ -111,7 +95,6 @@ function applyFiltersAndRender() {
         return matchesSearch && matchesCategory;
     });
 
-    // Urutkan Produk
     if (selectedSort === "price-asc") {
         result.sort((a, b) => a.price - b.price);
     } else if (selectedSort === "price-desc") {
@@ -124,9 +107,6 @@ function applyFiltersAndRender() {
     resetShoppingPagination();
 }
 
-/**
- * 5. RENDER KARTU PRODUK KE GRID
- */
 function renderProducts(products) {
     if (!productGrid) return;
     productGrid.innerHTML = "";
@@ -168,9 +148,6 @@ function renderProducts(products) {
     });
 }
 
-/**
- * 6. MEMBUKA MODAL DETAIL PRODUK SAAT PRODUK DIKLIK
- */
 function showProductDetail(product) {
     if (!modalBody || !productModal) return;
 
@@ -181,25 +158,43 @@ function showProductDetail(product) {
     }).format(product.price * 15000);
 
     modalBody.innerHTML = `
-        <div style="display: flex; flex-direction: column; gap: 12px; color: #3b2d28;">
-            <img src="${product.thumbnail}" alt="${product.title}" style="width: 100%; max-height: 200px; object-fit: contain; background: #fff; border-radius: 12px;">
-            <h2 style="font-size: 20px; color: #3b2d28;">${product.title}</h2>
-            <div style="font-size: 18px; font-weight: bold; color: #F11370;">${formattedPrice} ★ ${product.rating}</div>
-            <p><strong>Kategori:</strong> ${product.category}</p>
-            <p><strong>Stok:</strong> ${product.stock} pcs</p>
-            <p><strong>Brand:</strong> ${product.brand || "Tidak tersedia"}</p>
-            <p><strong>Deskripsi:</strong> ${product.description}</p>
+        <div class="modal-detail-container">
+            <!-- Kolom Kiri: Foto Produk -->
+            <div class="modal-left">
+                <img src="${product.thumbnail}" alt="${product.title}" class="modal-img">
+            </div>
+
+            <!-- Kolom Kanan: Detail Teks -->
+            <div class="modal-right">
+                <span class="modal-badge-category">${product.category}</span>
+                <h2 class="modal-title">${product.title}</h2>
+                
+                <div class="modal-tags">
+                    <span class="modal-tag">Brand: ${product.brand || 'Beauty'}</span>
+                    <span class="modal-tag">Stok tersisa: ${product.stock}</span>
+                </div>
+
+                <div class="modal-price-rating">
+                    <span class="modal-price">${formattedPrice}</span>
+                    <span class="modal-rating">★ ${product.rating || '4.0'}</span>
+                </div>
+
+                <div class="modal-description-box">
+                    <h3>Deskripsi</h3>
+                    <p>${product.description}</p>
+                </div>
+
+                <button class="add-cart-btn modal-cart-btn" data-id="${product.id}">
+                    Tambah ke Keranjang
+                </button>
+            </div>
         </div>
     `;
 
     productModal.style.display = "flex";
 }
 
-/**
- * 7. EVENT LISTENERS
- */
 function setupEventListeners() {
-    // Search dengan Debounce
     if (searchInput) {
         const handleDebouncedSearch = debounce(() => {
             applyFiltersAndRender();
@@ -208,17 +203,14 @@ function setupEventListeners() {
         searchInput.addEventListener("input", handleDebouncedSearch);
     }
 
-    // Filter Kategori & Sorting
     if (categorySelect) categorySelect.addEventListener("change", applyFiltersAndRender);
     if (sortSelect) sortSelect.addEventListener("change", applyFiltersAndRender);
 
-    // EVENT DELEGATION: Klik Kartu Produk untuk membuka Modal Detail
     if (productGrid) {
         productGrid.addEventListener("click", (e) => {
             const card = e.target.closest(".product-card");
             if (!card) return;
 
-            // Jika yang diklik BUKAN tombol 'Tambah ke Keranjang', tampilkan Modal Detail
             if (!e.target.classList.contains("add-cart-btn")) {
                 const productId = parseInt(card.dataset.id);
                 const product = allProducts.find((p) => p.id === productId);
@@ -227,7 +219,6 @@ function setupEventListeners() {
         });
     }
 
-    // Event Listener untuk Tombol Tutup & Keranjang
     if (closeModalBtn) {
         closeModalBtn.addEventListener("click", () => {
             productModal.style.display = "none";
