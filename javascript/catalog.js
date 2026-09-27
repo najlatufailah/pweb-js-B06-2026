@@ -121,7 +121,7 @@ function applyFiltersAndRender() {
     }
 
     filteredProducts = result;
-    renderProducts(filteredProducts);
+    resetShoppingPagination();
 }
 
 /**
@@ -187,6 +187,7 @@ function showProductDetail(product) {
             <div style="font-size: 18px; font-weight: bold; color: #F11370;">${formattedPrice} ★ ${product.rating}</div>
             <p><strong>Kategori:</strong> ${product.category}</p>
             <p><strong>Stok:</strong> ${product.stock} pcs</p>
+            <p><strong>Brand:</strong> ${product.brand || "Tidak tersedia"}</p>
             <p><strong>Deskripsi:</strong> ${product.description}</p>
         </div>
     `;
